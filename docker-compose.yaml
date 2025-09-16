@@ -1,27 +1,36 @@
+version: '3.8'
+
 services:
   site:
     image: sharlles13/gerador_saudacao:version-1.0
+    container_name: site_frontend
     ports:
-      - "80:80"
+      - "8082:80"   # Alterado de 8080 -> 8082 para evitar conflito
+    networks:
+      - backend
     depends_on:
       - ms-pessoas-aleatorias
       - ms-saudacoes-aleatorias
-    networks:
-      - backend
+    restart: unless-stopped
 
   ms-pessoas-aleatorias:
     image: sharlles13/ms-pessoas-aleatorias:1.0
+    container_name: ms_pessoas
     ports:
-      - "8000:8000"
+      - "8003:8000" # Mantido
     networks:
       - backend
+    restart: unless-stopped
 
   ms-saudacoes-aleatorias:
     image: sharlles13/ms-saudacoes-aleatorias:1.0
+    container_name: ms_saudacoes
     ports:
-      - "8080:8080"
+      - "8081:8080" # Mantido
     networks:
       - backend
+    restart: unless-stopped
 
 networks:
-  backend: {}
+  backend:
+    driver: bridge
