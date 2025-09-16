@@ -17,7 +17,7 @@ services:
     image: sharlles13/ms-pessoas-aleatorias:1.0
     container_name: ms_pessoas
     ports:
-      - "8003:8000" # Mantido
+      - "8003:8000" 
     networks:
       - backend
     restart: unless-stopped
@@ -26,7 +26,7 @@ services:
     image: sharlles13/ms-saudacoes-aleatorias:1.0
     container_name: ms_saudacoes
     ports:
-      - "8081:8080" # Mantido
+      - "8081:8080" 
     networks:
       - backend
     restart: unless-stopped
